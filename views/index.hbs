@@ -1,0 +1,89 @@
+{{!-- Nav bar --}}
+<nav class="navbar navbar-light bg-light fixed-top">
+    <span class="navbar-brand mb-0 ps-3" style="font-size: 30px">Password Generator</span>
+</nav>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height:100vh">
+  <div class="card border-light" style="height:75vh; width:75vh">
+    <div class="card-header d-flex align-items-center" style="height:7vh">
+      <span class="navbar-brand mb-0 me-1 ps-1 pe-2" style="font-size: 20px">Password Generator</span>
+      <i class="fa-solid fa-key fa-xl" style="color: #a2b8ec;"></i>
+    </div>
+    <div class="card-body mt-4">
+      <form action="/passwordGenerator" method="post" id="form">
+        {{!-- password length --}}
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="p-2" style="width:35%">
+            <label for="passwordLength" class="col-form-label">Password Length</label>
+          </div>
+          <div class="p-2 flex-grow-1">
+            <input type="number" id="passwordLength" class="form-control" min="4" max="16" name="passwordLength" value="{{data.passwordLength}}">
+            <span class="form-text">Length is available between 4 ~ 16</span>
+          </div>
+        </div>
+        {{!-- include lowercase character  --}}
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="p-2" style="width:35%">
+            <label for="lowercaseCharacter" class="col-form-check-label">Include Lowercase Characters</label>
+          </div>
+          <div class="p-2 flex-grow-1">
+            <input type="checkbox" id="lowercaseCharacter" class="form-check-input" name="lowercase" {{#if data.lowercase}} checked {{/if}}>
+            <span class="ps-1">(e.g. abcdefg)</span>
+          </div>
+        </div>
+        {{!-- include uppercase character --}}
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="p-2" style="width:35%">
+            <label for="uppercaseCharacter" class="col-form-check-label">Include Uppercase Characters</label>
+          </div>
+          <div class="p-2 flex-grow-1">
+            <input type="checkbox" id="uppercaseCharacter" class="form-check-input" name="uppercase"  {{#if data.uppercase}} checked {{/if}}>
+            <span class="ps-1">(e.g. ABCDEFG)</span>
+          </div>
+        </div>
+        {{!-- include numbers --}}
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="p-2" style="width:35%">
+            <label for="numbers" class="col-form-check-label">Include Numbers</label>
+          </div>
+          <div class="p-2 flex-grow-1">
+            <input type="checkbox" id="numbers" class="form-check-input" name="numbers"  {{#if data.numbers}} checked {{/if}}>
+            <span class="ps-1">(e.g. 123456)</span>
+          </div>
+        </div>
+        {{!-- include symbols --}}
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="p-2" style="width:35%">
+            <label for="symbols" class="col-form-check-label">Include Symbols</label>
+          </div>
+          <div class="p-2 flex-grow-1">
+            <input type="checkbox" id="symbols" class="form-check-input" name="symbols"  {{#if data.symbols}} checked {{/if}}>
+            <span class="ps-1">(e.g. @#$%)</span>
+          </div>
+        </div>
+        {{!-- exclude characters --}}
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="p-2" style="width:35%">
+            <label for="excludeCharacters" class="col-form-label">Exclude Characters</label>
+          </div>
+          <div class="p-2 flex-grow-1">
+            <input type="text" id="excludeCharacters" class="form-control" name="excludeCharacters" value="{{data.excludeCharacters}}">
+            <span class="form-text">These characters will not appear in the password</span>
+          </div>
+
+        </div>
+        <div class="mb-3 ps-3 pt-4 pb-4 rounded-3" id="password-result" style="background-color: #d9e5e6" >
+          <span style="font-size: 18px">Your password is: </span>
+          <span class="ms-1" style="font-size: 20px; color: #f7a072 ">{{password}}</span>
+        </div>
+        <button type="submit" class="btn btn-success mb-3 ms-2 p-2" id="submit-button">Generate Password</button>
+        <button type="submit" class="btn btn-primary mb-3 ms-2 p-2" id="reset-button" onclick="resetForm()">Reset</button>
+      </form>
+    </div>
+    <div class="card-footer text-end p-3">
+      <span>idea is inspired by <a href="https://passwordsgenerator.net/" style="text-decoration:none">Strong Random Password</a></span>
+    </div>
+  </div>
+</div>
+
+<script src="/javascripts/index.js"></script>

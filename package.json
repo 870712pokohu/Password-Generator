@@ -5,12 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev" : "nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "Hu,Jin-Ci",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2"
   }
