@@ -1,16 +1,16 @@
 {{!-- Nav bar --}}
-<nav class="navbar navbar-light bg-light fixed-top">
+<nav class="navbar navbar-light bg-light">
     <span class="navbar-brand mb-0 ps-3" style="font-size: 30px">Password Generator</span>
 </nav>
 
 <div class="d-flex justify-content-center align-items-center" style="min-height:100vh">
-  <div class="card border-light" style="height:75vh; width:75vh">
-    <div class="card-header d-flex align-items-center" style="height:7vh">
+  <div class="card border-light" style="max-height:95vh; width:70vh;">
+    <div class="card-header d-flex align-items-center" style="min-height:7vh">
       <span class="navbar-brand mb-0 me-1 ps-1 pe-2" style="font-size: 20px">Password Generator</span>
       <i class="fa-solid fa-key fa-xl" style="color: #a2b8ec;"></i>
     </div>
-    <div class="card-body mt-4">
-      <form action="/passwordGenerator" method="post" id="form">
+    <div class="card-body mt-3">
+      <form action="/passwordGenerator" class="position-relative" method="post" id="form">
         {{!-- password length --}}
         <div class="mb-3 d-flex justify-content-between">
           <div class="p-2" style="width:35%">
@@ -72,17 +72,23 @@
           </div>
 
         </div>
-        <div class="mb-3 ps-3 pt-4 pb-4 rounded-3" id="password-result" style="background-color: #d9e5e6" >
-          <span style="font-size: 18px">Your password is: </span>
-          <span class="ms-1" style="font-size: 20px; color: #f7a072 ">{{password}}</span>
+        <div class="ms-2 mb-3 p-4 rounded-3" id="password-result" style="background-color: #d9e5e6; display:{{display}};" >
+          <button class="border-0" id="copy-button" style="text-decoration: none; color:black; background-color: #d9e5e6;" onclick="copy()">
+            <i class="fa-solid fa-copy fa-2xl me-3" id="copyImage" style="color:white; display:{{displayBlock}};"></i>
+            <span style="font-size: 18px">Your password is: </span>
+            <span class="ms-2" id="password" style="font-size: 20px; color:dodgerblue;">{{password}}</span>
+          </button>
         </div>
-        <button type="submit" class="btn btn-success mb-3 ms-2 p-2" id="submit-button">Generate Password</button>
-        <button type="submit" class="btn btn-primary mb-3 ms-2 p-2" id="reset-button" onclick="resetForm()">Reset</button>
+        <div class="mb-2 ms-2">
+          <button type="submit" class="btn btn-success p-2" id="submit-button">Generate Password</button>
+        </div>
       </form>
+      <div class="mb-2 ms-2">
+          <button type="submit" class="btn btn-primary p-2" id="reset-button" onclick="resetForm()">Reset</button>
     </div>
-    <div class="card-footer text-end p-3">
-      <span>idea is inspired by <a href="https://passwordsgenerator.net/" style="text-decoration:none">Strong Random Password</a></span>
-    </div>
+  </div>
+  <div class="card-footer text-end p-3" style="">
+    <span>idea is inspired by <a href="https://passwordsgenerator.net/" style="text-decoration:none">Strong Random Password</a></span>
   </div>
 </div>
 

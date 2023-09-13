@@ -5,9 +5,10 @@ const symbols = '~`!@#$%^&*()_-+={[}]|\:;"\'<,>.?/'
 
 function generatePassword(data){
   let characterSet = ''
+  console.log(characterSet)
+  let excludeCharacter = data.excludeCharacters.trim()
+  let randomNumber = ''
   let passwordLength = parseInt(data.passwordLength)
-  let randomPassword = ''
-  console.log(data.lowercase)
   if(data.lowercase === 'on'){
     characterSet += lowercaseCharacter
   }
@@ -20,10 +21,30 @@ function generatePassword(data){
   if(data.symbols === 'on'){
     characterSet += symbols
   }
-  //console.log('this is the character set: ',characterSet)
-  randomPassword = randomCharacter(characterSet, passwordLength)
-  return randomPassword
+  if(excludeCharacter !== ''){
+    characterSet = exclusion(characterSet,excludeCharacter)
+  }
+  console.log(characterSet)
+  // the characterSet is an empty string or the user does not specify the password length 
+  if(characterSet !== NaN || passwordLength !== ''){
+    randomNumber = randomCharacter(characterSet, passwordLength)
+  }
+  return randomNumber
+
 }
+
+function exclusion(characterSet, excludeCharacter){
+  let index
+  // iterate the excludeCharacter string
+  for(let i = 0; i < excludeCharacter.length; i++){
+    // find the matching character at a certain index of the characterSet string
+    index = characterSet.indexOf(excludeCharacter.charAt(i))
+    // remove the certain character
+    characterSet = characterSet.substring(0,index) + characterSet.substr(index+1,characterSet.length)
+  }
+  return characterSet
+}
+
 
 function randomCharacter(characterSet, passwordLength){
   let randomPassword = ''
