@@ -5,12 +5,17 @@
 
 <div class="d-flex justify-content-center align-items-center" style="min-height:100vh">
   <div class="card border-light" style="max-height:95vh; width:70vh;">
-    <div class="card-header d-flex align-items-center" style="min-height:7vh">
-      <span class="navbar-brand mb-0 me-1 ps-1 pe-2" style="font-size: 20px">Password Generator</span>
-      <i class="fa-solid fa-key fa-xl" style="color: #a2b8ec;"></i>
+    <div class="card-header d-flex justify-content-between align-items-center" style="min-height:7vh">
+      <div>
+        <i class="fa-solid fa-key fa-2xl ms-2 me-2" style="color:darkgreen;"></i>
+        <span class="navbar-brand mb-0 me-1 ps-1 pe-2" style="font-size: 20px">Password Generator</span>
+      </div>
+      <button type="submit" class="btn border-none p-2 ps-3 pe-3" id="reset-button" onclick="resetForm()" style="background-color: dodgerblue;">
+        <i class="fa-solid fa-rotate-right" style="color: #ffffff;"></i>
+      </button>
     </div>
     <div class="card-body mt-3">
-      <form action="/passwordGenerator" class="position-relative" method="post" id="form">
+      <form action="/passwordGenerator" method="post" id="form">
         {{!-- password length --}}
         <div class="mb-3 d-flex justify-content-between">
           <div class="p-2" style="width:35%">
@@ -79,13 +84,10 @@
             <span class="ms-2" id="password" style="font-size: 20px; color:dodgerblue;">{{password}}</span>
           </button>
         </div>
-        <div class="mb-2 ms-2">
+        <div class="mb-3 ms-2">
           <button type="submit" class="btn btn-success p-2" id="submit-button">Generate Password</button>
         </div>
       </form>
-      <div class="mb-2 ms-2">
-          <button type="submit" class="btn btn-primary p-2" id="reset-button" onclick="resetForm()">Reset</button>
-    </div>
   </div>
   <div class="card-footer text-end p-3" style="">
     <span>idea is inspired by <a href="https://passwordsgenerator.net/" style="text-decoration:none">Strong Random Password</a></span>
