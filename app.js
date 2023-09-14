@@ -22,6 +22,7 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/passwordGenerator',(req,res)=>{
+  display = "none"
   res.render('index',{display, displayBlock})
 })
 

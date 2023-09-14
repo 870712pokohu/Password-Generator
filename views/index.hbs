@@ -10,20 +10,21 @@
         <i class="fa-solid fa-key fa-2xl ms-2 me-2" style="color:darkgreen;"></i>
         <span class="navbar-brand mb-0 me-1 ps-1 pe-2" style="font-size: 20px">Password Generator</span>
       </div>
-      <button type="submit" class="btn border-none p-2 ps-3 pe-3" id="reset-button" onclick="resetForm()" style="background-color: dodgerblue;">
+      <button type="submit" class="btn border-none p-2 ps-3 pe-3" id="reset-button" onclick="resetForm()" style="background-color:darkgreen;">
         <i class="fa-solid fa-rotate-right" style="color: #ffffff;"></i>
       </button>
     </div>
     <div class="card-body mt-3">
-      <form action="/passwordGenerator" method="post" id="form">
+      <form novalidate action="/passwordGenerator" method="post" id="form">
         {{!-- password length --}}
         <div class="mb-3 d-flex justify-content-between">
           <div class="p-2" style="width:35%">
             <label for="passwordLength" class="col-form-label">Password Length</label>
           </div>
           <div class="p-2 flex-grow-1">
-            <input type="number" id="passwordLength" class="form-control" min="4" max="16" name="passwordLength" value="{{data.passwordLength}}">
-            <span class="form-text">Length is available between 4 ~ 16</span>
+            <input type="number" id="passwordLength" class="form-control" min="4" max="16" name="passwordLength" value="{{data.passwordLength}}" required>
+            <div class="invalid-feedback ms-1">A valid number is required</div>
+            <div class="form-text ms-1">Length is available between 4 ~ 16</div>
           </div>
         </div>
         {{!-- include lowercase character  --}}
@@ -78,11 +79,11 @@
 
         </div>
         <div class="ms-2 mb-3 p-4 rounded-3" id="password-result" style="background-color: #d9e5e6; display:{{display}};" >
-          <button class="border-0" id="copy-button" style="text-decoration: none; color:black; background-color: #d9e5e6;" onclick="copy()">
+          <a class="border-0" id="copy-button" style="text-decoration: none; color:black; cursor: pointer;" onclick="copy()">
             <i class="fa-solid fa-copy fa-2xl me-3" id="copyImage" style="color:white; display:{{displayBlock}};"></i>
             <span style="font-size: 18px">Your password is: </span>
             <span class="ms-2" id="password" style="font-size: 20px; color:dodgerblue;">{{password}}</span>
-          </button>
+          </a>
         </div>
         <div class="mb-3 ms-2">
           <button type="submit" class="btn btn-success p-2" id="submit-button">Generate Password</button>

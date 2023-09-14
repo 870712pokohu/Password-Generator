@@ -5,7 +5,6 @@ const symbols = '~`!@#$%^&*()_-+={[}]|\:;"\'<,>.?/'
 
 function generatePassword(data){
   let characterSet = ''
-  console.log(characterSet)
   let excludeCharacter = data.excludeCharacters.trim()
   let randomNumber = ''
   let passwordLength = parseInt(data.passwordLength)
@@ -24,13 +23,11 @@ function generatePassword(data){
   if(excludeCharacter !== ''){
     characterSet = exclusion(characterSet,excludeCharacter)
   }
-  console.log(characterSet)
   // the characterSet is an empty string or the user does not specify the password length 
   if(characterSet !== NaN || passwordLength !== ''){
     randomNumber = randomCharacter(characterSet, passwordLength)
   }
   return randomNumber
-
 }
 
 function exclusion(characterSet, excludeCharacter){
